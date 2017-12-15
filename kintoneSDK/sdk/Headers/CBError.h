@@ -19,71 +19,75 @@
 #import <Foundation/Foundation.h>
 
 /**
- エラークラスです。
+ Error class.
  
- `CBError` としてエラーが作成されるとログレベル `CBLogLevelError` としてログ出力されます。`CBError` を利用することで、リソース管理された専用のエラー情報の提供、`NSError` のラッピング、`UIAlertView` としてエラー表示が可能となります。
+If an error is created as a 'CBError', it is outputted to the log as a log level of 'CBLogLevelError'.
+Using 'CBError'allows: wrapping of 'NSError'; displaying errors as 'UIAlertView'; providing resource controlled exclusive error data.
  */
 
 @interface CBError : NSError
 
 /// ---------------------------------
-/// @name プロパティ
+/// @name Property
 /// ---------------------------------
 
 /**
- `CBError` のエラーコードです。
+ Error code of 'CBError'.
  
- `CBError` の場合、`code` は `-1` となり、本プロパティに kintone SDK で用意したエラーコードが設定されます。`NSError` をベースに生成された `CBError` の場合、本プロパティと `code` は同じ値となります。
+ If 'CBError', 'code' becomes '-1', and an error code provided by the kintone SDK will be set in this property. If 'CBError' is based on 'NSError', 'code' and this property will become the same value.
  */
 @property (nonatomic, copy, readonly) NSString *cbErrorCode;
 
 /// ---------------------------------
-/// @name CBError インスタンスの生成
+/// @name Create CBError instance
 /// ---------------------------------
 
 /**
- 指定された `key` で `CBError` インスタンスを生成します。
+ Create a 'CBError' instance with the specified 'key'
  
- `key` は `kintoneResouces.bundle` の `KintoneErrorMessages.plist` で定義されたものを利用します。`KintoneErrorMessages.plist` で定義する文言フォーマットは ["Formatting String Objects"](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html)に従い、フォーマットに含まれる引数は `key` に続けて記述することで指定できます。
+The 'key' specified in 'KintoneErrorMessages.plist' of 'kintoneResouces.bundle' will be used.
+The wording format in 'KintoneErrorMessages.plist' will follow  ["Formatting String Objects"](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html), 
+and parameters included in the format can be denoted after 'key'.
  
- @param key `kintoneResouces.bundle` の `KintoneErrorMessages.plist` で定義された `Key`
- @param ... エラーメッセージフォーマット引数。`DescriptionKey`, `FailureReasonKey`, `RecoverySuggestionKey` の順に割り当てられます。指定された `key` が `KintoneErrorMessages.plist` に存在しない場合、`assert` で失敗します。
+ @param key     //'key' defined in 'KintoneErrorMessages.plist' of 'kintoneResouces.bundle'
+ @param ...     //Error message format. Issued in order of 'DescriptionKey', 'FailureReasonKey', 'RecoverySuggestionKey'. If the specified 'key' does not exist in 'KintoneErrorMessages.plist', 'assert' will fail.
  
- @return 新規作成された `CBError` インスタンス
+ @return        //Newly created 'CBError' instance
  */
 + (CBError *)errorWithFormat:(NSString *)key, ...;
 
 /**
- 指定された `NSError` をラップして `CBError` として返します。
+ Specified 'NSError" is wrapped, and returned as 'CBError'
  
- @param error `NSError`
+ @param error 'NSError'
  
- @return 新規作成された `CBError` インスタンス
+ @return Newly created 'CBError' instance
  */
 + (CBError *)errorWithNSError:(NSError *)error;
 
 /**
- 指定したエラー情報で `CBError` インスタンスを生成します。
+ Creates an 'CBError' instance with the specified error data
  
- `CBError` インスタンスを生成するローレベルメソッドです。
+ A low level method to create 'CBError' instance
  
- @param code エラーコード
- @param description エラー詳細
- @param failureReason 原因
- @param recoverySuggestion 対策
+ @param code                //error code
+ @param description         //error description
+ @param failureReason       //reason for error
+ @param recoverySuggestion  //suggestions for overcoming the error
  
- @return 新規作成された `CBError` インスタンス
+ @return                    //a newly created 'CBError' instance
  */
 + (CBError *)errorWithCode:(NSString *)code description:(NSString *)description failureReason:(NSString *)failureReason recoverySuggestion:(NSString *)recoverySuggestion;
 
 /// ---------------------------------
-/// @name UIAlertView の生成
+/// @name Create UIAlertView
 /// ---------------------------------
 
 /**
- エラー情報を含む UIAlertView を返します。
+ Returns UIAlertView that contains error data
  
- alert view には、設定されたエラー詳細、エラーコード、原因、対策が準備表示され、各情報が `nil` もしくは空文字の場合には、その情報は非表示となります。
+The 'code', 'description', 'failureReason', 'recoverySuggestion' that are set are displayed in the alert view.
+If parameters are set as 'nil' or empty strings, they will not be visible.
  */
 - (UIAlertView *)alertView;
 
