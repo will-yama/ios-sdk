@@ -19,75 +19,75 @@
 #import <Foundation/Foundation.h>
 
 /**
- kintone ファイルクラスです。
+ kintone file class.
  
- フィールドへの添付ファイルを操作するために利用します。`KintoneFileField` とセットで利用することを想定しています。
+ To be used for file operations on Attachment fields. Use together with 'KintoneFileField'.
  */
 @interface KintoneFile : NSObject
 
 /// ---------------------------------
-/// @name プロパティ
+/// @name Property
 /// ---------------------------------
 
 /**
- ファイルの mime type です。
+ The mime type of the file.
  */
 @property (nonatomic, copy, readonly) NSString *contentType;
 
 /**
- fileKey です。kintone アプリ上でファイルを操作するために利用するキーです。
+ The fileKey, which is needed for file operations on kintone Apps.
  */
 @property (nonatomic, copy, readonly) NSString *fileKey;
 
 /**
- ファイル名です。
+ The file name.
  */
 @property (nonatomic, copy, readonly) NSString *name;
 
 /**
- ファイルサイズです。
+ The file size.
  */
 @property (nonatomic, readonly) int size;
 
 /**
- ファイルデータです。
+ The file data.
  */
 @property (nonatomic, readonly) NSData *data;
 
 /**
- 削除対象ファイルフラグです。YES の場合、削除対象となります。
+ Flag for deletion. If YES, the file will be deleted.
  */
 @property (nonatomic) bool deleted;
 
 /// ---------------------------------
-/// @name KintoneFile インスタンス生成
+/// @name KintoneFile //Create instance
 /// ---------------------------------
 
 - (KintoneFile *)initWithProperties:(NSDictionary *)properties;
 
 /**
- 新規作成された `KintoneFile` インスタンスを返します。
+ Return a newly created 'kintoneFile' instnace
  
- @param data ファイルデータ
- @param name ファイル名
- @param contentType ファイルの mime type
+ @param data //The file data
+ @param name //The file name
+ @param contentType //The mime type of the file
  
- @return 'KintoneFile` インスタンス
+ @return 'kintone File' instance
  */
 - (KintoneFile *)initWithData:(NSData *)data name:(NSString *)name contentType:(NSString *)contentType;
 
 /// ---------------------------------
-/// @name その他メソッド
+/// @name Other methods
 /// ---------------------------------
 
 - (NSDictionary *)json;
 
 /**
- json 形式のデータから fileKey を設定します。
+ Sets the fileKey from json format data.
  
- `[KintoneAPI fileUploadWithFile:success:failure:queue:]` の success block 内で利用することを想定しています。
+ To be used within the success block of '[KintoneAPI fileUploadWithFile:success:failure:queue:]'/
  
- @param fileKey fileKey 値
+ @param fileKey //The value of the fileKey
  */
 - (void)setFileKeyWithJSONDictionary:(NSDictionary *)fileKey;
 
