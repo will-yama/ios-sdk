@@ -22,44 +22,44 @@
 @class KintoneApplication;
 
 /**
- cybozu.com ドメインを表すクラスです。
+ A class to represent the kintone domain
  
- cybozu.com ドメインへの接続に利用する credential を指定し、ドメイン単位でオブジェクトを生成します。
+ Objects are created per domain, by specifying the credentials to be used with the kintone domains.
  */
 @interface KintoneSite : NSObject
 
 /// ---------------------------------
-/// @name プロパティ
+/// @name Property
 /// ---------------------------------
 
 /**
- `KintoneSite` に紐づく credential です。
+ Credentials related to 'KintoneSite'
  */
 @property (nonatomic) CBCredential *cbCredential;
 
 /// ---------------------------------
-/// @name インスタンス生成
+/// @name Create instance
 /// ---------------------------------
 
 /**
- cybozu.com ドメインへの接続に利用する credential を指定してインスタンスを生成します。
+ Create an instance by specifing the credentials to use to connect to the kintone domain.
  
- @param credential ドメイン認証情報
+ @param credential //domain credentials
  
- @return `KintoneSite` オブジェクト
+ @return 'KintoneSite' object
  */
 - (KintoneSite *)initWithCredential:(CBCredential *)credential;
 
 /// ---------------------------------
-/// @name KintoneApplication 取得
+/// @name KintoneApplication Get
 /// ---------------------------------
 
 /**
- ドメインに存在する kintone アプリのオブジェクトを取得します。
+ Gets the object of the kintone App that exists in the kintone domain.
  
- @param appId kintone アプリ ID
+ @param appId //App ID of the kintone App
  
- @return `KintoneApplication` オブジェクト
+ @return 'KintoneApplication' object
  */
 - (KintoneApplication *)kintoneApplication:(int)appId;
 
