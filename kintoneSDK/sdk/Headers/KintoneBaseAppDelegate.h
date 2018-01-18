@@ -19,9 +19,9 @@
 #import <UIKit/UIKit.h>
 
 /**
- AppDelegate のベースクラスです。
- 
- 本クラスを継承することで、初期化時に `[CBLog sdkLogLevel]`、`[CBLog logLevel]` を共に Verbose に設定します。
+ Base class for AppDelegate.
+
+By inheriting this class, '[CBLog sdkLogLevel]' and '[CBLog logLevel]' are set in Verbose on initiliazation.
  */
 @interface KintoneBaseAppDelegate : UIResponder <UIApplicationDelegate>
 
