@@ -34,9 +34,9 @@ typedef NS_ENUM(NSUInteger, KintoneQueryOperatorType) {
 };
 
 /**
- kintone アプリのレコード一括取得用クエリを生成するクラスです。
+ A class to create a query for Get Records parameter
  
- ## 演算子の定義
+ ## Define operators
  
     typedef NS_ENUM(NSUInteger, KintoneQueryOperatorType) {
         KintoneEqualQueryOperatorType              = NSEqualToPredicateOperatorType,              // =
@@ -51,12 +51,12 @@ typedef NS_ENUM(NSUInteger, KintoneQueryOperatorType) {
         KintoneNotLikeQueryOperatorType            = 101                                          // not like
     };
  
- ## クエリ作成の例
+ ## Example of creating a query
  
  f1 like "API" and f2 = "kintone" and  (f3 > 10 or f4 in ("S", "A") ) order by f5 desc limit 5 offset 10
- ※ f1 - f5 は、各フィールドのフィールドコード。
+ ※ f1,f2,f3,f4,f5 incidate fields codes of each field
  
-    // Field1 は f1 に対応
+    // Field1 is the name of the field with field code f1
     KintoneQuery *q = [KintoneQuery new];
     [q where:
         [q and:
@@ -72,14 +72,14 @@ typedef NS_ENUM(NSUInteger, KintoneQueryOperatorType) {
     [q limit:5];
     [q offset:10];
  
- 詳しくは [cybozu.com developers - レコード取得](http://developers.cybozu.com/ja/kintone/apprec-readapi.html) を参照。
+ Check [cybozu.com developers - レコード取得](http://developers.cybozu.com/ja/kintone/apprec-readapi.html) for more details.
  */
 @interface KintoneQuery : NSObject
 
 + (NSString *)operatorTypeToString:(KintoneQueryOperatorType)operatorType;
 
 /// ---------------------------------
-/// @name 句
+/// @name //Options
 /// ---------------------------------
 
 /**
@@ -240,7 +240,7 @@ typedef NS_ENUM(NSUInteger, KintoneQueryOperatorType) {
 - (NSArray *)notLike:(KintoneField *)field value:(NSString *)value;
 
 /// ---------------------------------
-/// @name クエリ文字列
+/// @name //Query string
 /// ---------------------------------
 
 /**
