@@ -26,82 +26,83 @@
 @class KintoneUpdatedTimeField;
 
 /**
- kintone アプリのレコードを表すクラスです。
+ A class to represent kintone App records
  */
 @interface KintoneRecord : NSObject
 
 /// ---------------------------------
-/// @name プロパティ
+/// @name Property
 /// ---------------------------------
 
 /**
- レコードに含まれるフィールドです。
+ Fields in the record
  */
 @property (nonatomic, readonly) NSMutableDictionary *fields;
 
 /**
- レコード番号フィールドです。
- 
- 設定されていない場合には `nil` になります。
+The record number field.
+
+'nil' if not set.
  */
 @property (nonatomic, readonly) KintoneRecordNumberField *recordNumber;
 
 /**
- レコードの作成者フィールドです。
+ The 'Created by' field of the record.
  
- 設定されていない場合には `nil` になります。
+'nil' if not set.
  */
 @property (nonatomic, readonly) KintoneCreatorField *creator;
 
 /**
- レコードの作成日時フィールドです。
+ The 'Created datetime' field of the record
  
- 設定されていない場合には `nil` になります。
+'nil' if not set.
  */
 @property (nonatomic, readonly) KintoneCreatedTimeField *createdTime;
 
 /**
- レコードの更新者フィールドです。
+ The 'Updated by' field of the record.
  
- 設定されていない場合には `nil` になります。
+'nil' if not set.
  */
 @property (nonatomic, readonly) KintoneModifierField *modifier;
 
 /**
- レコードの更新日時フィールドです。
+ The 'Updated datetime' field of the record.
  
- 設定されていない場合には `nil` になります。
+'nil' if not set.
  */
 @property (nonatomic, readonly) KintoneUpdatedTimeField *updatedTime;
 
 /// ---------------------------------
-/// @name フィールド追加
+/// @name Add fields
 /// ---------------------------------
 
 /**
+
  レコードに指定したフィールドを追加します。
  
- @param field 追加するフィールド
+ @param field //The field to add
  */
 - (void)addField:(KintoneField *)field;
 
 /// ---------------------------------
-/// @name json 形式のデータより KintoneRecord を生成
+/// @name Create a KintoneRecord from json data
 /// ---------------------------------
 
 /**
- json 形式のデータより `KintoneRecord` を生成します。
+ Creates 'KintoneRecord' from json data.
  
- @param JSON `[KintoneAPI record:success:failure:queue:]` の success Block 引数の JSON
+ @param JSON // The JSON for the success Block parameter for '[KintoneAPI record:success:failure:queue:]'
  
- @return 生成された `KintoneRecord` オブジェクト
+ @return The created 'KintoneRecord' object
  */
 + (KintoneRecord *)kintoneRecordFromJSON:(id)JSON;
 
 + (KintoneRecord *)kintoneRecordFromDictionary:(NSDictionary *)record;
 
 /**
- json 形式のデータより `KintoneRecord` の `NSArray` を生成します。
+ Creates 'NSArray' of 'KintoneRecord' from json data
  
  @param JSON `[KintoneAPI recordsWithFields:query:success:failure:queue:]` の success Block 引数の JSON
  
