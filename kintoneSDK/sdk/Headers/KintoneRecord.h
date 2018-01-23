@@ -80,7 +80,7 @@ The record number field.
 
 /**
 
- レコードに指定したフィールドを追加します。
+ Adds the spcified field to the record
  
  @param field //The field to add
  */
@@ -104,9 +104,9 @@ The record number field.
 /**
  Creates 'NSArray' of 'KintoneRecord' from json data
  
- @param JSON `[KintoneAPI recordsWithFields:query:success:failure:queue:]` の success Block 引数の JSON
+ @param JSON // The JSON for the success Block parameter for '[KintoneAPI recordsWithFields:query:success:failure:queue:]'
  
- @return 生成された `KintoneRecord`
+ @return The created 'KintoneRecord'
  */
 + (NSArray *)kintoneRecordsFromJSON:(id)JSON;
 
