@@ -19,23 +19,23 @@
 #import <Foundation/Foundation.h>
 
 /**
- シングルトンの `NSOperationQueue` を提供するクラスです。
+  A Class that provides the 'NSOperationQueue' Singleton
  */
 @interface CBOperationQueue : NSOperationQueue
 
 /**
- シングルトンのデフォルト設定 `NSOperationQueue` を返します。
+ Returns the Singleton default settings 'NSOperationQueue'
  
  @return `NSOperationQueue`
  */
 + (CBOperationQueue *)sharedConcurrentQueue;
 
 /**
- 同時実行 operation 数 1 のシングルトン `NSOperationQueue` を返します。
+ Returns 'NSOperationQueue' Singleton with Concurrent operation count 1
  
- `NSOperationQueue` にセットされた `NSOperation` の実行順を保証したい場合に利用します。
+ Use when you need to ensure the execution sequence of 'NSOperation' set in 'NSOperationQueue'
  
- @return `maxConcurrentOperationCount` が  1 の `NSOperationQueue`
+ @return 'NSOperationQueue' with 'maxConcurrentOperationCount' of 1 
  */
 + (CBOperationQueue *)sharedNonConcurrentQueue;
 
